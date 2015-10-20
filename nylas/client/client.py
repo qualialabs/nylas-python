@@ -349,6 +349,8 @@ class APIClient(json.JSONEncoder):
 
         session = self._get_http_session(cls.api_root)
 
+        print data
+
         response = session.put(url, data=json.dumps(data))
 
         result = _validate(response).json()
