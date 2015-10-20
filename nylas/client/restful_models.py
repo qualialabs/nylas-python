@@ -59,6 +59,9 @@ class NylasAPIObject(dict):
         return RestfulModelCollection(cls, self.api, **filters)
 
     def save(self, **kwargs):
+        print
+        print 'cool'
+        print
         if self.id:
             new_obj = self.api._update_resource(self.cls, self.id,
                                                 self.as_json(), **kwargs)
