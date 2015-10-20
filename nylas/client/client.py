@@ -351,6 +351,7 @@ class APIClient(json.JSONEncoder):
 
         print data
         del data['received_recent_date']
+        del data['_labels']
 
         response = session.put(url, data=json.dumps(data))
 
