@@ -350,6 +350,7 @@ class APIClient(json.JSONEncoder):
         session = self._get_http_session(cls.api_root)
 
         print data
+        del data['received_recent_date']
 
         response = session.put(url, data=json.dumps(data))
 
