@@ -349,9 +349,10 @@ class APIClient(json.JSONEncoder):
 
         session = self._get_http_session(cls.api_root)
 
+        for key in data.keys():
+            if key!= 'unread':
+                del data[key]
         print data
-        del data['received_recent_date']
-        del data['_labels']
 
         response = session.put(url, data=json.dumps(data))
 
