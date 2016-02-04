@@ -3,6 +3,7 @@ from .errors import FileUploadError
 from six import StringIO
 import base64
 import json
+import sys
 
 
 class NylasAPIObject(dict):
@@ -244,7 +245,8 @@ class Thread(NylasAPIObject):
     def update_labels(self, label_ids=[]):
         update = {'labels': label_ids}
         new_obj = self.api._update_resource(self.cls, self.id, update)
-        print new_obj
+        print self.labels
+        sys.stdout.flush()
         for attr in self.cls.attrs:
             if hasattr(new_obj, attr):
                 setattr(self, attr, getattr(new_obj, attr))
@@ -254,6 +256,7 @@ class Thread(NylasAPIObject):
         labels = [l.id for l in self.labels]
         labels = list(set(labels).union(set(label_ids)))
         print labels
+        sys.stdout.flush()
         return self.update_labels(labels)
 
     def add_label(self, label_id):
