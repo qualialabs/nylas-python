@@ -244,8 +244,9 @@ class Thread(NylasAPIObject):
 
     def update_labels(self, label_ids=[]):
         update = {'labels': label_ids}
+        print label_ids
         new_obj = self.api._update_resource(self.cls, self.id, update)
-        print new_obj
+        print new_obj._labels
         sys.stdout.flush()
         for attr in self.cls.attrs:
             if hasattr(new_obj, attr):
@@ -255,7 +256,6 @@ class Thread(NylasAPIObject):
     def add_labels(self, label_ids=[]):
         labels = [l.id for l in self.labels]
         labels = list(set(labels).union(set(label_ids)))
-        sys.stdout.flush()
         return self.update_labels(labels)
 
     def add_label(self, label_id):
